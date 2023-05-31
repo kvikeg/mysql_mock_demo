@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nlc-philip/mysql_mock_demo/issues"
   },
-  "homepage": "https://github.com/nlc-philip/mysql_mock_demo#readme"
+  "homepage": "https://github.com/nlc-philip/mysql_mock_demo#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }
