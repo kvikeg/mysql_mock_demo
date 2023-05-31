@@ -1,14 +1,17 @@
 var mysql = require('mysql');
 const util = require('util');
 
-function connect_db() {
-    var con = mysql.createConnection(
-        {
-            host: "localhost",
-            user: "root",
-            password: "sepassword"
-        }
-    );
+function connect_db(db=null) {
+    var params = {
+        host: "localhost",
+        user: "root",
+        password: "sepassword"
+    };
+    if (db) {
+        params.database = db;
+    }
+
+    var con = mysql.createConnection(params);
 
     return {
         query(sql, args) {
@@ -53,6 +56,8 @@ async function prepare_db() {
                 return;
             }
         }
+
+
     
     } finally {
         await dbcon.close();
@@ -60,29 +65,19 @@ async function prepare_db() {
 }
 
 
-function main_demo() {
-    var con = mysql.createConnection(
-        {
-        host: "localhost",
-        user: "root",
-        password: "sepassword"
-        }
-    );
-    
-    con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected");
-                
+async function main_demo() {
+    var condb = connect_db("testdb");
+
+    try {
+
         var sql = "SELECT * from users;"
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-        });
-        
-        con.end(function(err) {
-            if (err) throw err;
-            console.log('Connection ended');
-        });
-    });
+        var res = await condb.query(sql);
+        console.log(res);
+    } catch(err) {
+        console.error(err);
+    } finally {
+        await condb.close();
+    }
     
 }
 
