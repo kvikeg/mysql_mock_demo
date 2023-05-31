@@ -1,5 +1,19 @@
 {
-    "scripts": {
-        "test": "jest"
-    }
+  "scripts": {
+    "test": "jest"
+  },
+  "name": "mysql_demo",
+  "description": "\"# mysql_mock_demo\"  \r A demo service that accesses remote MySQL.\r The service is used to show mock generation",
+  "version": "1.0.0",
+  "main": "demo_service.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlc-philip/mysql_mock_demo.git"
+  },
+  "author": "Philip Derbeko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nlc-philip/mysql_mock_demo/issues"
+  },
+  "homepage": "https://github.com/nlc-philip/mysql_mock_demo#readme"
 }
