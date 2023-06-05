@@ -71,10 +71,11 @@ async function main_demo() {
     try {
 
         var sql = "SELECT * from users;"
+        console.log("sending a query")
         var res = await condb.query(sql);
         console.log(res);
     } catch(err) {
-        console.error(err);
+        console.warn(err);
     } finally {
         await condb.close();
     }
