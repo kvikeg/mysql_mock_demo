@@ -44,8 +44,9 @@ async function prepare_db() {
         try {
             var res = await dbcon.query("use testdb;");
             console.log(res);
-            var sql = "CREATE TABLE users (name VARCHAR(255), address VARCHAR(255))";
+            var sql = "CREATE TABLE users (name VARCHAR(255), address VARCHAR(255), age INT)";
             res = await dbcon.query(sql);
+
             console.log(res);
         } catch (err) {
             var strerr = err.toString();
@@ -70,10 +71,18 @@ async function main_demo() {
 
     try {
 
-        var sql = "SELECT * from users;"
+        var sql = "SELECT name, age from users;"
         console.log("sending a query")
         var res = await condb.query(sql);
-        console.log(res);
+        const {rows} = res; 
+
+        var sum =0;
+        for(r in rows) {
+            sum += r.age;
+        }
+        console.log(sum);
+        console.log(sum / rows.length);
+
     } catch(err) {
         console.warn(err);
     } finally {
